@@ -56,7 +56,9 @@ jobs:
       run: dotnet build --no-restore --configuration Release
     
     - name: Clean .xml files before packing
-      run: find . -name ".xml" -type f -delete
+      run: |
+        find . -name ".xml" -type f -delete || true
+        find . -name "*.xml" -path "*/bin/*" -type f -delete || true
     
     - name: Pack
       run: dotnet pack src/WorkTrack.Common.Domain.Exceptions/WorkTrack.Common.Domain.Exceptions.csproj --configuration Release --no-build --output ./artifacts
