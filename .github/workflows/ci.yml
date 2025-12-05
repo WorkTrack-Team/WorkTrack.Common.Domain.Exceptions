@@ -57,8 +57,8 @@ jobs:
     
     - name: Clean .xml files before packing
       run: |
+        # Удаляем только файлы с именем ".xml" (с точкой в начале), но не правильные XML файлы документации
         find . -name ".xml" -type f -delete || true
-        find . -name "*.xml" -path "*/bin/*" -type f -delete || true
     
     - name: Pack
       run: dotnet pack src/WorkTrack.Common.Domain.Exceptions/WorkTrack.Common.Domain.Exceptions.csproj --configuration Release --no-build --output ./artifacts
